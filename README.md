@@ -5,11 +5,12 @@ This repository contains custom Mangayomi extensions for manga, manhwa, and manh
 ## Available Extensions
 
 ### Asura Scans (English)
-- **Version**: 0.1.0
+- **Version**: 0.1.1
 - **Language**: English
 - **Type**: Manga/Manhwa/Manhua
 - **Format**: JavaScript (iOS compatible)
 - **Base URL**: https://asurascans.com
+- **Source**: Original (developed for this repository)
 - **Features**:
   - Popular manga browsing
   - Latest updates
@@ -17,7 +18,41 @@ This repository contains custom Mangayomi extensions for manga, manhwa, and manh
   - Full manga details with genres and metadata
   - Chapter list with dates
   - Page loading with high-quality images
-  - Automatic skipping of premium/locked chapters
+
+### Mangafire (English)
+- **Version**: 0.2.20
+- **Language**: English  
+- **Type**: Manga (multi-language supported)
+- **Format**: JavaScript (iOS compatible)
+- **Base URL**: https://mangafire.to
+- **Source**: Vendored from entityJY/mangayomi-extensions-eJ
+- **License**: Apache License 2.0
+- **Cloudflare**: Protected (works in Mangayomi iOS)
+- **Features**:
+  - Trending and recently updated manga
+  - Advanced search with filters (type, genre, status)
+  - Multiple view modes (chapter/volume)
+  - Manga details with complete metadata
+  - Chapter and volume lists
+  - High-quality page loading
+
+### Weeb Central (English)
+- **Version**: 0.1.0
+- **Language**: English
+- **Type**: Manga/Manhwa/Manhua  
+- **Format**: JavaScript (iOS compatible)
+- **Base URL**: https://weebcentral.com
+- **Source**: Vendored from entityJY/mangayomi-extensions-eJ
+- **License**: Apache License 2.0
+- **Cloudflare**: Protected (works in Mangayomi iOS)
+- **Features**:
+  - Popular and latest updates
+  - Advanced search with extensive filters
+  - Sorting by popularity, subscribers, updates
+  - Filter by status, type, and tags
+  - Manga details with complete metadata
+  - Chapter lists with dates
+  - Image page loading with required headers
 
 ## Adding This Repository to Mangayomi (iOS)
 
@@ -38,14 +73,15 @@ This repository contains custom Mangayomi extensions for manga, manhwa, and manh
 
 ## Supported Sources (Current)
 
-- ✅ **Asura Scans** - Fully tested and working
+- ✅ **Asura Scans** - Fully tested and working (original)
+- ✅ **Mangafire** - Vendored, Cloudflare protected (works in Mangayomi)
+- ✅ **Weeb Central** - Vendored, Cloudflare protected (works in Mangayomi)
 
 ## Planned Sources
 
 The following sources are planned for future implementation:
 
 - ⏳ Aqua Manga
-- ⏳ Weeb Central
 - ⏳ Mangafreak
 - ⏳ Mangahere
 - ⏳ TCB Scans
@@ -114,6 +150,44 @@ This is a personal repository, but if you find issues or have suggestions for im
 
 - **Mangayomi**: [kodjodevf/mangayomi](https://github.com/kodjodevf/mangayomi)
 - **Asura Scans**: https://asurascans.com
+- **Mangafire & Weeb Central Extensions**: Vendored from [entityJY/mangayomi-extensions-eJ](https://github.com/entityJY/mangayomi-extensions-eJ)
+  - Copyright 2023 Moustapha Kodjo Amadou
+  - Licensed under Apache License 2.0
+  - Original repository: https://github.com/entityJY/mangayomi-extensions-eJ
+- **Mangafire**: https://mangafire.to
+- **Weeb Central**: https://weebcentral.com
+
+## License
+
+### Asura Scans Extension
+Original work created for this repository.
+
+### Mangafire & Weeb Central Extensions
+These extensions are vendored from entityJY/mangayomi-extensions-eJ and distributed under the Apache License 2.0.
+
+```
+Copyright 2023 Moustapha Kodjo Amadou
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+Full license text: http://www.apache.org/licenses/LICENSE-2.0
+
+### Modifications
+- Changed extension IDs to avoid conflicts with upstream (Mangafire: 123456789, Weeb Central: 987654321)
+- Updated icon URLs to point to this repository
+- Updated sourceCodeUrl to point to this repository  
+- Added license attribution headers to source files
 
 ## Disclaimer
 
