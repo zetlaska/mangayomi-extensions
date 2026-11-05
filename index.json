@@ -34,14 +34,14 @@
     "hasCloudflare": true,
     "sourceCodeUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/manga/src/all/mangafire.js",
     "apiUrl": "",
-    "version": "0.2.20",
+    "version": "0.2.21",
     "isManga": true,
     "itemType": 0,
     "isFullData": false,
     "appMinVerReq": "0.5.0",
     "additionalParams": "",
     "sourceCodeLanguage": 1,
-    "notes": "Vendored from entityJY/mangayomi-extensions-eJ (Apache License 2.0)"
+    "notes": "Based on kodjodevf/mangayomi-extensions v0.1.25 (Apache License 2.0). Removed VRF/CryptoJS dependency."
   },
   {
     "name": "Weeb Central",
