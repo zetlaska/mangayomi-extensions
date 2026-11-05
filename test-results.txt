@@ -1,0 +1,47 @@
+=== Testing Asura Scans API ===
+
+1. Testing Popular Series (page 1)...
+   ✓ Status: 200
+   ✓ Found 20 series
+   ✓ Has more pages: true
+   ✓ First series: The First Order
+   ✓ Cover URL: https://cdn.asurascans.com/asura-images/covers/the-first-order.a711a9.webp
+   ✓ Public URL: /comics/the-first-order-ab39de10
+
+2. Testing Latest Updates (page 1)...
+   ✓ Status: 200
+   ✓ Found 20 series
+   ✓ First series: The First Order
+
+3. Testing Search (query: "nano machine")...
+   ✓ Status: 200
+   ✓ Found 1 results
+   ✓ First result: Nano Machine
+   ✓ Slug: nano-machine
+
+4. Testing Series Details (slug: comics/nano-machine-ab39de10)...
+   ✓ Status: 200
+   ✓ Title: Nano Machine
+   ✓ Author: Hanjung Wolya
+   ✓ Status: ongoing
+   ✓ Description: <p>Nanotechnology meets martial arts at the Mashin Academy. Yeo-un’s mother may not be one of the Hi...
+   ✓ Genres: Action, Adventure, Fantasy, Murim, System
+   ✓ Total chapters: 337
+   ✓ Latest chapter: Chapter 337 - Final chapter <final>
+   ✓ Is premium: true
+
+5. Testing Chapter Pages (chapter 1)...
+   ✓ Status: 200
+   ✓ Chapter ID: 152280
+   ✓ Chapter slug: ac158a3a-7e87-4492-b792-cf36c9ef9dd5
+   ✓ Total pages: 24
+   ✓ First page URL: https://cdn.asurascans.com/asura-images/chapters-restored/nano-machine/1/001.webp?v=1777436809
+   ✓ First page dimensions: 800x5020
+   ✓ Last page URL: https://cdn.asurascans.com/asura-images/chapters-restored/nano-machine/1/024.webp?v=1777436809
+
+6. Testing Image URL accessibility...
+   ✓ Image status: 200
+   ✓ Image size: 225507 bytes
+   ✓ Image URL: https://cdn.asurascans.com/asura-images/chapters-restored/nano-machine/1/001.webp?v=1777436809
+
+=== All Tests Complete ===

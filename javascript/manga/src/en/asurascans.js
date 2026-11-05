@@ -7,7 +7,7 @@ const mangayomiSources = [{
     "iconUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/icon/en.asurascans.png",
     "typeSource": "single",
     "itemType": 0,
-    "version": "0.1.0",
+    "version": "0.1.1",
     "dateFormat": "",
     "dateFormatLocale": "",
     "pkgPath": "manga/src/en/asurascans.js"
@@ -22,19 +22,25 @@ class DefaultExtension extends MProvider {
     }
 
     async getPopular(page) {
-        const url = `${this.source.apiUrl}/series?page=${page}&order=popular`;
+        const limit = 20;
+        const offset = (page - 1) * limit;
+        const url = `${this.source.apiUrl}/series?limit=${limit}&offset=${offset}&order=popular`;
         const res = await new Client().get(url, { headers: this.getHeaders(url) });
         return this.parseSeriesList(res);
     }
 
     async getLatestUpdates(page) {
-        const url = `${this.source.apiUrl}/series?page=${page}&order=latest`;
+        const limit = 20;
+        const offset = (page - 1) * limit;
+        const url = `${this.source.apiUrl}/series?limit=${limit}&offset=${offset}&order=latest`;
         const res = await new Client().get(url, { headers: this.getHeaders(url) });
         return this.parseSeriesList(res);
     }
 
     async search(query, page, filters) {
-        const url = `${this.source.apiUrl}/series?page=${page}&order=latest&search=${encodeURIComponent(query)}`;
+        const limit = 20;
+        const offset = (page - 1) * limit;
+        const url = `${this.source.apiUrl}/series?limit=${limit}&offset=${offset}&order=latest&search=${encodeURIComponent(query)}`;
         const res = await new Client().get(url, { headers: this.getHeaders(url) });
         return this.parseSeriesList(res);
     }
@@ -48,8 +54,6 @@ class DefaultExtension extends MProvider {
         }
 
         for (const item of json.data) {
-            if (item.status === "dropped") continue;
-            
             list.push({
                 name: item.title,
                 imageUrl: item.cover,
