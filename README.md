@@ -7,10 +7,19 @@ Personal extension repository for [Mangayomi](https://github.com/kodjodevf/manga
 | Name | Version | Language | Status | Notes |
 |------|---------|----------|--------|-------|
 | Asura Scans | 0.1.1 | en | ✅ Working | REST API-based |
-| MangaFire | 0.2.21 | en | ✅ Working | Based on kodjodevf v0.1.25 |
+| MangaFire | 0.2.22 | en | ✅ Working | JSON API with VRF signing |
 | Weeb Central | 0.1.0 | en | ✅ Working | Vendored from entityJY |
+| HiveToons | 0.1.0 | en | ✅ Working | JSON API; coin-locked chapters hidden by default |
+| TCB Scans | 0.1.0 | en | ✅ Working | HTML scraping; recent chapter dates only |
+| MANGA Plus | 0.1.0 | en | ✅ Working | Official API; requires Mangayomi ≥0.9.0; free chapters only |
 
 All extensions use JavaScript format (`sourceCodeLanguage: 1`) for iOS compatibility.
+
+### Extension Limitations
+
+- **MANGA Plus**: Requires Mangayomi ≥0.9.0 (`appMinVerReq: "0.9.0"`). Only lists free-tier chapters. Page images are decrypted and served as data URIs - offline downloads not supported.
+- **TCB Scans**: Chapter dates are exact for recent releases on home page, estimated otherwise.
+- **HiveToons**: Coin-locked chapters hidden by default (preference available to show them).
 
 ## Installation
 
@@ -65,8 +74,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for:
 | Asura Scans | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | MangaFire | ✅ | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* |
 | Weeb Central | ✅ | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* | ⚠️ Cloudflare* |
+| HiveToons | ✅ | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** |
+| TCB Scans | ✅ | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** |
+| MANGA Plus | ✅ | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** | ⚠️ External** |
 
-\* _Works in Mangayomi app (handles Cloudflare JS challenge), but cannot be tested in plain Node.js_
+\* _Works in Mangayomi app (handles Cloudflare JS challenge), but cannot be tested in plain Node.js_  
+\*\* _Live tested from external network (not from this VM), works in Mangayomi app_
 
 ## Known Issues
 
