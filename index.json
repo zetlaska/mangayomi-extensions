@@ -25,7 +25,7 @@
     "name": "Mangafire",
     "id": 123456789,
     "baseUrl": "https://mangafire.to",
-    "lang": "en",
+    "langs": ["en", "ja", "fr", "es", "es-la", "pt", "pt-br"],
     "typeSource": "single",
     "iconUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/icon/mangafire.png",
     "dateFormat": "",
@@ -34,14 +34,14 @@
     "hasCloudflare": true,
     "sourceCodeUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/manga/src/all/mangafire.js",
     "apiUrl": "",
-    "version": "0.2.20",
+    "version": "0.1.25",
     "isManga": true,
     "itemType": 0,
     "isFullData": false,
     "appMinVerReq": "0.5.0",
     "additionalParams": "",
     "sourceCodeLanguage": 1,
-    "notes": "Vendored from entityJY/mangayomi-extensions-eJ (Apache License 2.0)"
+    "notes": "From official kodjodevf/mangayomi-extensions (Apache License 2.0). Multi-language support."
   },
   {
     "name": "Weeb Central",
