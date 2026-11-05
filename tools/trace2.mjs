@@ -1,0 +1,11 @@
+import {V} from './env_i.mjs';
+import fs from 'fs';
+const log=[];
+const fmt=v=>typeof v=='string'?JSON.stringify(v.length>400?v.slice(0,400)+'…':v):typeof v=='number'?v:(Array.isArray(v)?'[arr'+v.length+']':typeof v=='object'&&v?(v instanceof Uint8Array?'u8['+v.length+']':'{obj}'):typeof v=='function'?'fn:'+v.name:String(v));
+globalThis.__L=(op,a,b,r)=>{log.push(op+' '+fmt(a)+' '+fmt(b)+' -> '+fmt(r))};
+globalThis.__P=(v)=>{log.push('  push '+fmt(v))};
+const out=V.dynamicEncrypt(process.argv[2]||'ab');
+globalThis.__L=null;globalThis.__P=null;
+console.log(out, log.length);
+fs.writeFileSync('trace.txt',log.join('\n'));
+process.exit(0);
