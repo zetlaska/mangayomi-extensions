@@ -247,6 +247,55 @@ Example header:
 5. **Missing required methods** - Must implement all 5 core methods
 6. **Wrong itemType** - 0=manga, 1=anime, 2=novel (must match content)
 
+## MangaFire: Re-extracting VRF Signing Keys
+
+If MangaFire breaks with **"403 Invalid token"** errors, the VRF signing keys may have changed (tied to their frontend build).
+
+### Symptoms
+- Extension fails to load browse/search/detail
+- Network errors show 403 responses
+- MangaFire site works in browser but not in extension
+
+### Fix: Update MF_ROUNDS Keys
+
+1. **Extract new keys** using `tools/trace2.mjs`:
+   ```bash
+   cd tools
+   node trace2.mjs
+   ```
+   
+   This will:
+   - Fetch MangaFire's current frontend bundle
+   - Extract the VRF key arrays (`k1`, `k2`, `k3`)
+   - Output the new `MF_ROUNDS` constant
+
+2. **Update extension** (`javascript/manga/src/all/mangafire.js`):
+   - Find the `MF_ROUNDS` constant (near top of file)
+   - Replace all three key arrays with extracted values
+   - Increment version (e.g., 0.2.22 → 0.2.23)
+
+3. **Test**:
+   ```bash
+   cd /workspace
+   node tools/test-harness.js
+   ```
+   
+   Should show successful API calls without 403 errors
+
+4. **Update index.json** version to match
+
+5. **Submit PR** with new keys and incremented version
+
+### Key Extraction Details
+
+The keys are embedded in MangaFire's polyfill bundle and used for a 3-round S-box/XOR signing scheme. The `trace2.mjs` tool:
+- Fetches the current build manifest
+- Downloads the polyfill bundle
+- Extracts the three 256-element key arrays
+- Formats them as the `MF_ROUNDS` constant
+
+Keys are tied to build ID (e.g., `b9f1b44d...`). When MangaFire deploys a new build, keys change.
+
 ## Questions?
 
 Open an issue describing:

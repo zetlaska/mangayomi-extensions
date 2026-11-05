@@ -33,14 +33,14 @@
     "hasCloudflare": true,
     "sourceCodeUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/manga/src/all/mangafire.js",
     "apiUrl": "",
-    "version": "0.2.21",
+    "version": "0.2.22",
     "isManga": true,
     "itemType": 0,
     "isFullData": false,
     "appMinVerReq": "0.5.0",
     "additionalParams": "",
     "sourceCodeLanguage": 1,
-    "notes": "From official kodjodevf/mangayomi-extensions (Apache License 2.0). Multi-language support.",
+    "notes": "API-based extension (v0.2.22). Uses MangaFire JSON API with VRF signing.",
     "lang": "en"
   },
   {

@@ -1,0 +1,158 @@
+source meta: Mangafire 123456789 0.2.22 https://mangafire.to lang=en
+
+# getPopular page 1 & 2
+  p1: 20 [
+  'One Piece',
+  'Overgeared (Team Argo)',
+  'Blue Lock',
+  'Ao Ashi',
+  'The Remarried Empress'
+]
+  p2: 20 [
+  'Rebirth of the Ultimate Master',
+  'Nano Machine',
+  'Jujutsu Kaisen',
+  'Lookism',
+  'Firefly Wedding'
+]
+  PASS popular p1 has many titles 20
+  PASS popular p2 differs from p1 overlap=0
+  PASS popular hasNextPage 
+  PASS popular items have name/link/imageUrl 
+
+# getLatestUpdates
+  latest: 20 [
+  'Maki Modori Koushaku Reijou desu ga Maou Cheat de Saikyou Yuusha ni narimashita!?',
+  'CEO-san & Hisho-kun',
+  'Love Is Love (Helicopter)',
+  'Vampire Family',
+  'Reincarnated Little Girl with Apology Cheats, Going My Own Way in Another World'
+]
+  PASS latest has titles 
+
+# search "one piece"
+  search: 20 [
+  'One Piece',
+  'One Piece Gakuen',
+  'Koisuru One Piece',
+  'One Piece Party',
+  'One Piece Omake'
+]
+  PASS search finds One Piece /title/dkw-one-piece
+
+# search with filters (Mangayomi filter state objects)
+  filtered: 20 [
+  'Yeokdaegeup Yeongji Seolgyesa',
+  'On the Way to Meet Mom',
+  'On the Way to Meet Mom',
+  "A Regressor's Tale of Cultivation",
+  'Eleceed'
+]
+  PASS filtered search returns titles 
+
+# getDetail /title/dkw-one-piece
+  name: One Piece | status: 0 | author: Oda Eiichirou (尾田栄一郎) | artist: Oda Eiichirou (尾田栄一郎)
+  genre: Manga, Action, Comedy, Drama, Sci-Fi, Adventure, Fantasy, Shounen
+  image: https://static.mfcdn.nl/a96c/i/8/22/bcfcc8f19ec17a2929fa55d8945ea18b.jpg
+  description: Gol D. Roger, a man referred to as the "Pirate King," is set to be executed by the World Government. But just before his demise, he confirms …
+  chapters: 2445 first 3: [
+  {
+    name: 'Chapter 1197: Love is Defense',
+    url: '/title/dkw-one-piece/chapter/9542741',
+    dateUpload: '1793577602000',
+    scanlator: 'Official'
+  },
+  {
+    name: 'Chapter 1197: Love is Defence',
+    url: '/title/dkw-one-piece/chapter/9536110',
+    dateUpload: '1793304002000',
+    scanlator: 'Unofficial'
+  },
+  {
+    name: 'Chapter 1196: The Love of the Suicidal is Worthless',
+    url: '/title/dkw-one-piece/chapter/9498777',
+    dateUpload: '1792368002000',
+    scanlator: 'Official'
+  }
+]
+  last: {
+  name: 'Chapter 0: Volume 112',
+  url: '/title/dkw-one-piece/chapter/9324579',
+  dateUpload: '1785283202000',
+  scanlator: 'Unofficial'
+}
+  PASS detail fields populated 
+  PASS many chapters 2445
+  PASS chapters have dates 2026-11-02T00:00:02.000Z
+  PASS chapter urls unique 
+
+# getPageList /title/dkw-one-piece/chapter/9542741
+  pages: 15 first: {
+  url: 'https://l1n.mfcdn2.xyz/mf/12a3db61fa0d4f41a6d8795097a7e8049734a0475eb9a1b34b5a37edf329c58d235ddf1e496423eaff35/h/p.jpg',
+  headers: { Referer: 'https://mangafire.to/' }
+}
+  PASS pages returned 
+  PASS page 1 downloads with Referer 200 image/jpeg 225138 bytes
+  PASS page 15 downloads with Referer 200 image/jpeg 229903 bytes
+  same image without Referer -> 403
+
+# legacy URL support
+  PASS legacy /manga/<slug>.<hid> link resolves One Piece
+
+# volumes view preference
+  volumes: 117 [
+  {
+    name: 'Volume 117',
+    url: '/title/dkw-one-piece/volume/355517',
+    dateUpload: null,
+    scanlator: '3 chapters'
+  },
+  {
+    name: 'Volume 116',
+    url: '/title/dkw-one-piece/volume/344349',
+    dateUpload: null,
+    scanlator: '3 chapters'
+  }
+]
+  PASS volume pages returned 48
+
+HTTP log:
+  GET 200 565ms https://mangafire.to/api/titles?order%5Btrending%5D=desc&languages%5B%5D=en&page=1&vrf=8sK3xtqdFZdDWTKuDVd13pWwhD44iM3lZi3w_KsdJoGh3dZBJyDWu1L6BSskE5FpPKT1
+  GET 200 480ms https://mangafire.to/api/titles?order%5Btrending%5D=desc&languages%5B%5D=en&page=2&vrf=8sK3xtqdFZdDWTKuDVd13pWwhD44iM3lZi3w_KsdJoGh3dZBJyDWu1L6BSskE5FpPKSg
+  GET 200 288ms https://mangafire.to/api/titles?order%5Bchapter_updated_at%5D=desc&languages%5B%5D=en&page=1&vrf=8sK3xtqdFZdDWTKuDVd13pWwhD44iM3lZi3w_KsdZuSZ8ha1sYKzfMS65U0ytcg…
+  GET 200 235ms https://mangafire.to/api/titles?keyword=one%20piece&order%5Brelevance%5D=desc&languages%5B%5D=en&page=1&vrf=8sK3xtqdFZfetBhus6bRApNr5zMeEWBTZ95f5YlQeQ2zTkcLLz77…
+  GET 200 398ms https://mangafire.to/api/titles?types%5B%5D=manhwa&genres_in%5B%5D=1&genres_ex%5B%5D=7&order%5Bscore%5D=desc&languages%5B%5D=en&page=1&vrf=8sK3xtqdFZcCRT11BJBKQ…
+  GET 200 176ms https://mangafire.to/api/titles/dkw?vrf=8sK3xtqdFds7Xfo
+  GET 200 186ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=1&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 188ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=2&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 202ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=3&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 205ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=4&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 219ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=5&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 194ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=6&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 198ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=7&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 199ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=8&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 198ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=9&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 216ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=10&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 212ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=11&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 204ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=12&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 187ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=13&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 157ms https://mangafire.to/api/chapters/9542741?vrf=8vPRXa1JjvVTxnnTsTkQONk
+  GET 200 164ms https://mangafire.to/api/titles/dkw?vrf=8sK3xtqdFds7Xfo
+  GET 200 184ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=1&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 163ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=2&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 167ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=3&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 162ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=4&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 158ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=5&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 162ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=6&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 179ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=7&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 162ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=8&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 166ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=9&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp6…
+  GET 200 240ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=10&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 159ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=11&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 158ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=12&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 165ms https://mangafire.to/api/titles/dkw/chapters?language=en&sort=number&order=desc&page=13&limit=200&vrf=8sK3xtqdFds7XfqT-1YDqH36A9zjenscWl3AfdeVpDbD6pwmhDtBak_Gxp…
+  GET 200 158ms https://mangafire.to/api/titles/dkw?vrf=8sK3xtqdFds7Xfo
+  GET 200 179ms https://mangafire.to/api/titles/dkw/volumes?vrf=8sK3xtqdFds7XfqTxx7w1Icvww
+  GET 200 159ms https://mangafire.to/api/volumes/355517?vrf=8iollBwznxjRXRrHQHP7
+
+RESULT: 16 passed, 0 failed
