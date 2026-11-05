@@ -1,0 +1,116 @@
+source meta: MANGA Plus by SHUEISHA 573904126 0.1.0 https://mangaplus.shueisha.co.jp
+
+# getPopular p1/p2 (hottest ranking, English)
+  p1: 30 [
+  'One Piece',
+  'Boruto: Two Blue Vortex',
+  'Dandadan',
+  'SPY x FAMILY',
+  'SAKAMOTO DAYS',
+  'Kagurabachi',
+  'Bartlet Fairy Basslet',
+  'DIGIMON EGGS'
+]
+  p2: 30 [
+  'Ultimate Exorcist Kiyoshi',
+  'Subaru the Invincible',
+  'Blue Exorcist',
+  'The Ura Files',
+  'Akane-banashi'
+]
+  PASS popular p1 >= 10 30
+  PASS popular p2 differs 
+  PASS popular hasNextPage 
+  PASS items have name/link/image 
+
+# latest
+  latest: 30 [
+  'Monkey Hunting',
+  'Aztec Turning of Heaven',
+  'Dogsred',
+  'Salamander',
+  "We're J-Just Childhood Friends",
+  "So you weren't into me?!",
+  "Morino-san Just Won't Leave Me Be",
+  'The Days of Diamond'
+]
+  PASS latest has titles 
+
+# search key titles
+  "One Piece" -> [ 'One Piece 100020' ]
+  PASS search "One Piece" (best match first) https://mangaplus.shueisha.co.jp/titles/100020
+  "Kagurabachi" -> [ 'Kagurabachi 100274' ]
+  PASS search "Kagurabachi" (best match first) https://mangaplus.shueisha.co.jp/titles/100274
+  "Chainsaw Man" -> [ 'Chainsaw Man 100037' ]
+  PASS search "Chainsaw Man" (best match first) https://mangaplus.shueisha.co.jp/titles/100037
+  "Kaiju No. 8" -> [
+  'KAIJU NO.8 (Monster #8) 100110',
+  'Kaiju No. 8: B-Side 100290',
+  'Kaiju No. 8: Hoshina’s Day Off 100564'
+]
+  PASS search "Kaiju No. 8" (best match first) https://mangaplus.shueisha.co.jp/titles/100110
+  "Boruto" -> [
+  'Boruto: Two Blue Vortex 100269',
+  'Boruto: Naruto Next Generations 100006'
+]
+  PASS search "Boruto" (best match first) https://mangaplus.shueisha.co.jp/titles/100269
+
+# getDetail One Piece
+  name: One Piece | status: 0 | author: Eiichiro Oda | genre: Battle / Action, Sci-Fi / Fantasy
+  image: https://jumpg-assets.tokyo-cdn.com/secure/title/100020/title_thumbnail_main/616281.jpg?hash=TBGXFyt4CO0P0w6J1Eu54A&expires=2145884400
+  desc: As a child, Monkey D. Luffy was inspired to become a pirate by listening to the tales of the buccaneer "Red-Haired" Shan
+    Chapter 1197: Love is Defense | https://mangaplus.shueisha.co.jp/viewer/1030905 | 2026-11-01T15:00:00.000Z
+    Chapter 1196: The Love of the Suicidal is Worthless | https://mangaplus.shueisha.co.jp/viewer/1030616 | 2026-10-18T15:00:00.000Z
+    Chapter 1195: Weakness | https://mangaplus.shueisha.co.jp/viewer/1030615 | 2026-10-11T15:00:00.000Z
+    Chapter 3: Enter Zolo: Pirate Hunter | https://mangaplus.shueisha.co.jp/viewer/1000488 | 2019-01-20T15:00:00.000Z
+    Chapter 2: They Call Him ‘Straw Hat Luffy’ | https://mangaplus.shueisha.co.jp/viewer/1000487 | 2019-01-20T15:00:00.000Z
+    Chapter 1: Romance Dawn | https://mangaplus.shueisha.co.jp/viewer/1000486 | 2019-01-20T15:00:00.000Z
+  PASS detail populated 
+  PASS latest chapter 1197 first Chapter 1197: Love is Defense
+  PASS chapters dated 
+  Kagurabachi: 6 readable chapters: #137, #136, #135, #3, #2, #1 | newest 2026-11-01 | status 0
+  PASS Kagurabachi has chapters 
+  Chainsaw Man: 3 readable chapters: #3, #2, #1 | newest 2019-01-20 | status 5
+  PASS Chainsaw Man has chapters 
+  KAIJU NO.8 (Monster #8): 3 readable chapters: #3, #2, #1 | newest 2020-07-29 | status 5
+  PASS Kaiju No. 8 has chapters 
+  Boruto: Two Blue Vortex: 6 readable chapters: #38, #37, #36, #3, #2, #1 | newest 2026-10-20 | status 0
+  PASS Boruto has chapters 
+
+# getPageList https://mangaplus.shueisha.co.jp/viewer/1030905
+  pages: 15 in 5983 ms; first url prefix: data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHB … total chars 4472021
+  PASS pages returned 15
+  PASS every page decrypts to a complete JPEG (FFD8..FFD9) 
+
+HTTP log:
+  GET 200 991ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/rankingV2?lang=eng&type=hottest&clang=eng
+  GET 200 313ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/rankingV2?lang=eng&type=hottest&clang=eng
+  GET 200 357ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/updated
+  GET 200 459ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/allV2
+  GET 200 404ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/allV2
+  GET 200 398ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/allV2
+  GET 200 400ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/allV2
+  GET 200 401ms https://jumpg-webapi.tokyo-cdn.com/api/title_list/allV2
+  GET 200 307ms https://jumpg-webapi.tokyo-cdn.com/api/title_detailV4?title_id=100020&clang=eng
+  GET 200 301ms https://jumpg-webapi.tokyo-cdn.com/api/title_detailV4?title_id=100274&clang=eng
+  GET 200 301ms https://jumpg-webapi.tokyo-cdn.com/api/title_detailV4?title_id=100037&clang=eng
+  GET 200 302ms https://jumpg-webapi.tokyo-cdn.com/api/title_detailV4?title_id=100110&clang=eng
+  GET 200 301ms https://jumpg-webapi.tokyo-cdn.com/api/title_detailV4?title_id=100269&clang=eng
+  GET 200 332ms https://jumpg-webapi.tokyo-cdn.com/api/manga_viewer_v3?chapter_id=1030905&split=yes&img_quality=high&clang=eng
+  GET 200 1282ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/3.jpg?hash=x5eYMVJiLWNYZCKKI00JwQ&expires=1793880000
+  GET 200 1448ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/1.jpg?hash=0A6UzblWXcGX6MqmduoN0w&expires=1793880000
+  GET 200 1473ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/2.jpg?hash=35H3AZHK1kn5oYZMq2mOtQ&expires=1793880000
+  GET 200 2595ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/4.jpg?hash=StYbge9bSsm7fd7-vwIJfw&expires=1793880000
+  GET 200 577ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/7.jpg?hash=spNPtkVN17vql1X6_aaK0g&expires=1793880000
+  GET 200 607ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/6.jpg?hash=IR4zjUjZ3FmPVmavpjFmjg&expires=1793880000
+  GET 200 817ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/5.jpg?hash=y0dICicK4CiJXN8NVYtfLA&expires=1793880000
+  GET 200 1632ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/8.jpg?hash=Zb-xvwRSwjQrjaf-tvp49g&expires=1793880000
+  GET 200 515ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/11.jpg?hash=JB_02jmNhrpbDl-bouDpDA&expires=1793880000
+  GET 200 586ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/10.jpg?hash=rnobfoqqvqKej-tzbJIoAA&expires=1793880000
+  GET 200 677ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/9.jpg?hash=p2eiTvLsbCbTTej_l6PRFg&expires=1793880000
+  GET 200 833ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/12.jpg?hash=awbwXe-pq3VSXIASia7KkQ&expires=1793880000
+  GET 200 395ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/15.jpg?hash=RYnLFi6vhnLREu8Sob1_og&expires=1793880000
+  GET 200 464ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/13.jpg?hash=bFo5Z-6mz1skqD9wZWY_7w&expires=1793880000
+  GET 200 484ms https://jumpg-assets3.tokyo-cdn.com/secure/title/100020/chapter/1030905/manga_page/high/14.jpg?hash=yB9MwMdGfNa2RIzP-rxyIg&expires=1793880000
+
+RESULT: 19 passed, 0 failed

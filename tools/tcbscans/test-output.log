@@ -1,0 +1,106 @@
+source meta: TCB Scans 462810937 0.1.0 https://tcbonepiecechapters.com
+
+# getPopular (single page: site has ~20 projects)
+  popular: 19 [
+  'Ace Novel - Manga Adaptation',
+  'Attack on Titan',
+  'Black Clover',
+  'Black Clover Gaiden: Quartet Knights',
+  'Bleach',
+  'Build King',
+  'Chainsaw Man',
+  'Demon Slayer: Kimetsu no Yaiba',
+  'Fan Letter Spin-Off',
+  'Haikyuu!! (New Special!)',
+  'Hunter X Hunter',
+  'Jujutsu Kaisen',
+  'Jujutsu Kaisen Modulo',
+  'My Hero Academia',
+  "My Hero Academia One-Shot: You're Next!!",
+  'One Piece',
+  'One Piece - Nami vs Kalifa by Boichi',
+  'One-Punch Man',
+  'Spy X Family'
+]
+  PASS popular lists projects 19
+  PASS hasNextPage false (small site) 
+  PASS items have name/link/image 
+
+# latest
+  latest order: [
+  'One Piece',
+  'Black Clover',
+  'Jujutsu Kaisen Modulo',
+  'Fan Letter Spin-Off',
+  'Hunter X Hunter',
+  'Chainsaw Man',
+  'Jujutsu Kaisen',
+  "My Hero Academia One-Shot: You're Next!!"
+]
+  PASS latest starts with most recently updated (One Piece) One Piece
+
+# search (client-side)
+  "one piece" -> [ 'One Piece', 'One Piece - Nami vs Kalifa by Boichi' ]
+  PASS search "one piece" 
+  "hunter" -> [ 'Hunter X Hunter' ]
+  PASS search "hunter" 
+  "jujutsu" -> [ 'Jujutsu Kaisen', 'Jujutsu Kaisen Modulo' ]
+  PASS search "jujutsu" 
+  "chainsaw" -> [ 'Chainsaw Man' ]
+  PASS search "chainsaw" 
+  PASS no-match search empty 
+
+# getDetail One Piece
+  name: One Piece | status: 5 | image: https://cdn.onepiecechapters.com/file/CDN-M-A-N/Screen-Shot-2021-04-23-at-9.31.12-PM-1024x732v3.png
+  desc: As a child, Monkey D. Luffy dreamed of becoming the King of Pirates. But his life changed when he accidentally
+  chapters: 1201
+    Chapter 1197 - Love is Defence https://tcbonepiecechapters.com/chapters/8011/one-piece-chapter-1197 2026-10-29T19:10:48.000Z
+    Chapter 1196 - The worthless love of someone with a death wish https://tcbonepiecechapters.com/chapters/8010/one-piece-chapter-1196 2026-10-21T22:38:48.333Z
+    Chapter 1195 - Veakness https://tcbonepiecechapters.com/chapters/8009/one-piece-chapter-1195 2026-10-14T02:06:48.667Z
+    Chapter 1194 - The Impermanence of All Things https://tcbonepiecechapters.com/chapters/8006/one-piece-chapter-1194 2026-09-24T18:32:33.162Z
+    ... {
+  name: 'Chapter 1',
+  url: 'https://tcbonepiecechapters.com/chapters/433/one-piece-chapter-1-review-1688718751',
+  dateUpload: null,
+  scanlator: 'TCB Scans'
+}
+  PASS detail populated 
+  PASS latest chapter is 1197 Chapter 1197 - Love is Defence
+  PASS many chapters 1201
+  PASS newest chapter has exact date from home page 
+  chapters with date: 155 / 1201
+  PASS urls unique 
+
+# getDetail Hunter x Hunter
+   Hunter X Hunter 410 chapters; newest Chapter 410 - Negotiation ④ 2024-12-07T14:28:45.000Z
+  PASS HxH has chapters 
+
+# getPageList https://tcbonepiecechapters.com/chapters/8011/one-piece-chapter-1197
+  pages: 17 {
+  url: 'https://cdn.onepiecechapters.com/file/CDN-M-A-N/op_1197_pk_01a.png',
+  headers: { Referer: 'https://tcbonepiecechapters.com/' }
+}
+  PASS pages returned 17
+  PASS image downloads 200 image/png png 1516560 bytes https://cdn.onepiecechapters.com/file/CDN-M-A-N/op_1197_pk_01a.png
+  PASS image downloads 200 image/png png 3455889 bytes https://cdn.onepiecechapters.com/file/CDN-M-A-N/op_1197_pk_16b.png
+  without headers -> 200 png
+  HxH newest pages: 17 https://cdn.onepiecechapters.com/file/CDN-M-A-N/Hunterxcred.png
+  PASS HxH pages 
+
+HTTP log:
+  GET 200 635ms https://tcbonepiecechapters.com/projects
+  GET 200 301ms https://tcbonepiecechapters.com/
+  GET 200 304ms https://tcbonepiecechapters.com/projects
+  GET 200 298ms https://tcbonepiecechapters.com/projects
+  GET 200 287ms https://tcbonepiecechapters.com/projects
+  GET 200 303ms https://tcbonepiecechapters.com/projects
+  GET 200 294ms https://tcbonepiecechapters.com/projects
+  GET 200 296ms https://tcbonepiecechapters.com/projects
+  GET 200 846ms https://tcbonepiecechapters.com/mangas/5/one-piece
+  GET 200 287ms https://tcbonepiecechapters.com/
+  GET 200 310ms https://tcbonepiecechapters.com/mangas/15/hunter-x-hunter
+  GET 200 282ms https://tcbonepiecechapters.com/
+  GET 200 282ms https://tcbonepiecechapters.com/chapters/8011/one-piece-chapter-1197
+  GET 200 293ms https://tcbonepiecechapters.com/chapters/7836/hunter-x-hunter-chapter-410
+
+RESULT: 19 passed, 0 failed

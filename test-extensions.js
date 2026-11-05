@@ -188,6 +188,9 @@ function main() {
     './javascript/manga/src/en/asurascans.js',
     './javascript/manga/src/all/mangafire.js',
     './javascript/manga/src/en/weebcentral.js',
+    './javascript/manga/src/en/hivetoons.js',
+    './javascript/manga/src/en/tcbscans.js',
+    './javascript/manga/src/en/mangaplus.js',
   ];
 
   let allPassed = true;

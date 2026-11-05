@@ -1,0 +1,119 @@
+source meta: HiveToons 391567284 0.1.0 https://hivetoons.org
+
+# getPopular p1/p2
+  p1: 24 [
+  'Lookism',
+  'Eleceed',
+  'The Bully In-Charge',
+  'Superhuman Era',
+  'Reborn Rich – The Youngest Son of a Conglomerate',
+  'I Was Mistaken As a Monstrous Genius Actor'
+]
+  p2: 23 [
+  'Reality Quest',
+  'Devil Returns To School Days',
+  'Reincarnation of the Veteran Soldier',
+  'Reborn as the Enemy Prince',
+  'The Great War',
+  'The Cop Is Too Strong'
+]
+  PASS popular p1 >= 10 24
+  PASS popular p2 differs 
+  PASS popular hasNextPage 
+  PASS items have name/link/image 
+
+# latest
+  latest: 24 [
+  'Life Changer Voice Phishing',
+  'Rookie Public Servant Hunts Villains and Leaves Work on Time',
+  'Genius Grandson Of The Loan Shark King',
+  "Battle for the World's End",
+  'Baek XX',
+  'High Class'
+]
+  PASS latest has titles 
+
+# search key titles
+  PASS search "Lookism" https://hivetoons.org/series/lookism
+  PASS search "Study Group" https://hivetoons.org/series/study-group
+  PASS search "Baek XX" https://hivetoons.org/series/baek-xx
+  PASS search "Manager Kim" https://hivetoons.org/series/manager-kim
+  PASS search "Questism" https://hivetoons.org/series/questism
+  PASS search "Reality Quest" https://hivetoons.org/series/reality-quest
+  PASS search "High Class" https://hivetoons.org/series/high-class
+
+# filters
+  completed: 9 [
+  'Questism',
+  'High School Conquest: War Against Bullies',
+  'Be the Actor',
+  'Hanlim Gym'
+]
+  PASS status filter returns titles 
+
+# getDetail Lookism
+  name: Lookism | status: 0 | author: Park Tae Jun | genre: Drama, Shounen, Action, Comedy, School Life, Supernatural, Manhwa
+  image: https://storage.hivetoon.com/public/upload/series/featured/cm3pqmjkg00003n9whb0ycvqd/76e2335d-35f4-4361-9d68-ee280e61b7c6.gif
+  desc: Daniel is an unattractive loner who wakes up in a different body. Now tall, handsome, and cooler than ever in his new fo
+  chapters: 640 first: {
+  name: 'Chapter 631 - Gapryong Kim [22]',
+  url: 'https://hivetoons.org/series/lookism/chapter-631',
+  dateUpload: '1793287788382',
+  scanlator: ''
+} last: {
+  name: 'Chapter 1 - Ep. 1',
+  url: 'https://hivetoons.org/series/lookism/chapter-1',
+  dateUpload: '1734008159142',
+  scanlator: ''
+}
+  PASS detail populated 
+  PASS many chapters 640
+  PASS chapters dated 2026-10-29T15:29:48.382Z
+  PASS chapter urls unique 
+
+# getPageList https://hivetoons.org/series/lookism/chapter-631
+  pages: 59 first: https://storage.hivetoon.com/public/upload/series/lookism/94161e83-0584-4f5d-8393-d0555383e2de/page-0001_00_1793300304036-815635.webp headers: {"Referer":"https://hivetoons.org/","Origin":"https://hivetoons.org"}
+  PASS pages returned 59
+  PASS image downloads 200 image/webp webp 284052 bytes https://storage.hivetoon.com/public/upload/series/lookism/94161e83-0584-4f5d-8393-d0555383e2de/page-0001_00_1793300304036-815635.webp
+  PASS image downloads 200 image/webp webp 151054 bytes https://storage.hivetoon.com/public/upload/series/lookism/94161e83-0584-4f5d-8393-d0555383e2de/page-0059_15_1793300338360-545281.webp
+  without headers -> 200 webp
+
+# locked chapters (series with coin chapters)
+  default chapters: 92 newest: Chapter 92
+  PASS locked hidden by default 
+  with pref: 107 locked: 15 🔒 Chapter 107 - Scoring
+  PASS locked shown with pref 
+  PASS locked chapter gives clear error This HiveToons chapter is locked (coins / early access). It will appear once it becomes free.
+  Study Group: 350 readable chapters, newest "Chapter 348 - “You can do it!”" 2026-10-25
+  Baek XX: 203 readable chapters, newest "Chapter 203 - Black Tag" 2026-10-28
+  Manager Kim: 266 readable chapters, newest "Chapter 266 - The Next Generation" 2026-10-28
+
+HTTP log:
+  GET 200 227ms https://api.hivetoons.org/api/query?page=1&perPage=24&orderBy=totalViews
+  GET 200 179ms https://api.hivetoons.org/api/query?page=2&perPage=24&orderBy=totalViews
+  GET 200 165ms https://api.hivetoons.org/api/query?page=1&perPage=24&orderBy=lastChapterAddedAt
+  GET 200 164ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Lookism
+  GET 200 164ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Study%20Group
+  GET 200 164ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Baek%20XX
+  GET 200 169ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Manager%20Kim
+  GET 200 152ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Questism
+  GET 200 161ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=Reality%20Quest
+  GET 200 150ms https://api.hivetoons.org/api/query?page=1&perPage=24&searchTerm=High%20Class
+  GET 200 156ms https://api.hivetoons.org/api/query?page=1&perPage=24&orderBy=totalViews&seriesStatus=COMPLETED
+  GET 200 147ms https://api.hivetoons.org/api/post?postSlug=lookism
+  GET 200 282ms https://api.hivetoons.org/api/chapters?postId=15&skip=0&take=500&order=desc
+  GET 200 154ms https://api.hivetoons.org/api/chapters?postId=15&skip=500&take=500&order=desc
+  GET 200 147ms https://api.hivetoons.org/api/chapter?mangaslug=lookism&chapterslug=chapter-631
+  GET 200 160ms https://api.hivetoons.org/api/post?postSlug=life-changer-voice-phishing
+  GET 200 160ms https://api.hivetoons.org/api/chapters?postId=368&skip=0&take=500&order=desc
+  GET 200 146ms https://api.hivetoons.org/api/post?postSlug=life-changer-voice-phishing
+  GET 200 164ms https://api.hivetoons.org/api/chapters?postId=368&skip=0&take=500&order=desc
+  GET 200 151ms https://api.hivetoons.org/api/chapter?mangaslug=life-changer-voice-phishing&chapterslug=chapter-107
+  GET 200 160ms https://api.hivetoons.org/api/post?postSlug=study-group
+  GET 200 162ms https://api.hivetoons.org/api/chapters?postId=219&skip=0&take=500&order=desc
+  GET 200 154ms https://api.hivetoons.org/api/post?postSlug=baek-xx
+  GET 200 154ms https://api.hivetoons.org/api/chapters?postId=11&skip=0&take=500&order=desc
+  GET 200 145ms https://api.hivetoons.org/api/post?postSlug=manager-kim
+  GET 200 157ms https://api.hivetoons.org/api/chapters?postId=21&skip=0&take=500&order=desc
+
+RESULT: 23 passed, 0 failed
