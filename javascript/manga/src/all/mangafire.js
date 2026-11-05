@@ -1,7 +1,7 @@
 /*
  * MangaFire Extension for Mangayomi
  * 
- * Original Source: kodjodevf/mangayomi-extensions (Official Repository)
+ * Original Source: kodjodevf/mangayomi-extensions (archived)
  * Repository: https://github.com/kodjodevf/mangayomi-extensions
  * License: Apache License 2.0
  * 
@@ -24,7 +24,7 @@
  * 
  * Version History:
  * - 0.2.20: Vendored from entityJY (used CryptoJS - BROKEN)
- * - 0.1.25: Replaced with official version (removed VRF, no CryptoJS needed)
+ * - 0.2.21: Based on kodjodevf v0.1.25 (removed VRF, no CryptoJS needed)
  */
 
 const mangayomiSources = [{
@@ -36,7 +36,7 @@ const mangayomiSources = [{
     "iconUrl": "https://raw.githubusercontent.com/zetlaska/mangayomi-extensions/main/javascript/icon/mangafire.png",
     "typeSource": "single",
     "itemType": 0,
-    "version": "0.1.25",
+    "version": "0.2.21",
     "dateFormat": "",
     "dateFormatLocale": "",
     "pkgPath": "manga/src/all/mangafire.js"
